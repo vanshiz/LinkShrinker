@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            
+            /* border:1px solid white; */
+        }
+
+        .container{
+            margin:2rem;
+            border:2px solid white;
+            height:90vh;
+            color:white;
+            background-color:rgb(10, 10, 35);
+            border-radius:5%;
+        }
+        .Heading{
+            text-align:center;
+            font-size:4rem;
+            font-family: 'Silkscreen', sans-serif;
+            line-height: 0;
+            
+
+        }
+        .under{
+            background-color:white;
+            width:50vw;
+            height:0.3rem;
+            position:relative;
+            left:16rem;
+        }
+
+        
+
+        .input{
+            font-size:1.5rem;
+            text-align:center;
+            /* font-weight:700; */
+        }
+        .real-input{
+            height: 35px;
+            text-align:center;
+            width:300px;
+        }
+
+        .btn{
+            background-color: rgb(237, 202, 76);
+            color:white;
+            height:43px;
+            width:100px;
+            font-weight:700;
+            border:none;
+        }
+
+        .result{
+            color:greenyellow;
+            font-size:1.5rem;
+            text-align:center;
+            text-decoration: none;
+            display:block;
+        }
+
+        .tablew{
+            height:30vh;
+            text-align:center;
+            margin-left:12.5rem;
+        }
+
+        .table{
+            text-align: center;
+            /* position:relative; */
+            /* left:27rem; */
+            font-size:1.5rem;
+            
+            width:60vw;
+
+        }
+        table,tr,td,th{
+            border:3px dotted white;
+            border-collapse:collapse;
+            padding:10px;
+        }
+        .Heading-two{
+            font-size:3rem;
+            font-family: 'Silkscreen', sans-serif;
+            line-height: 0;
+            margin-left:-15rem;
+        }
+        .under-two{
+            background-color:white;
+            width:30vw;
+            height:0.3rem;
+            position:relative;
+            left:11.5rem;
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+        </style>
+        
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <br>
+        <h1 class="Heading">Link Shrinker</h1>
+    <div class="under"></div>
+    <br><br>
+   
+    <form method="post" action="/url" class="input">
+        <label for="url" > Enter the Original Url: &nbsp; </label>
+        <input type="text" name="url" placeholder="https://example.com" class="real-input"/>&nbsp;&nbsp;
+        <button type="submit" class="btn">Generate</button>
+    </form>
+    <br><br>
+    <% if (locals.id) { %>
+        <a class="result" href="http://localhost:8001/<%=id %>">URL Generated: http://localhost:8001/<%=id %></a>
+        
+    <%} %>
+    
+    <br>
+    <div class="tablew">
+        <% console.log('Rendering template with urls:', locals.urls); %>
+        <% if (locals.urls) { %>
+            <h1 class="Heading-two">Analytics</h1>
+            <div class="under-two"></div>
+            <br/>
+            <table class="table">
+                <thead>
+                    <th>S. No</th>
+                    <th>ShortId</th>
+                    <th>Redirect</th>
+                    <th>Clicks</th>
+                </thead>
+                <tbody>
+                    <% urls.forEach((url, index) => { %>
+                        <tr>
+                            <td><%= index+1 %></td>
+                            <td><%= url.shortId %></td>
+                            <td><%= url.redirectURL %></td>
+                            <td><%= url.visitHistory.length %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+        
+    </div>
+    </div>
+    
+</body>
+</html>
